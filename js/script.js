@@ -89,5 +89,23 @@ function removePreviousPage() {
 }
 
 // Call functions
-showPage(data, 1);
+showPage(data, 3);
 addPagination(data);
+
+/////////////////////////////////////////////////////////////////
+/////////////////// DISPLAY SEARCH RESULTS //////////////////////
+/////////////////////////////////////////////////////////////////
+function searchBar() {
+  const searchHeader = document.querySelector("header");
+  const searchLabel = document.createElement("label");
+  searchLabel.className = "student-search";
+  searchLabel.innerHTML = `
+            <span>Search by name</span>
+            <input id="search" placeholder="Search by name..." />
+            <button type="button">
+              <img src="img/icn-search.svg" alt="Search icon" />
+            </button>
+`;
+  searchHeader.appendChild(searchLabel);
+}
+searchBar();
