@@ -1,0 +1,35 @@
+External Vanilla Javascript
+    Meets Expectations: 
+        ✔ Project doesn't use jQuery or some other library, plugin or borrowed code snippet @started(22-06-29 14:01) @done(22-07-01 02:05) @lasted(1d12h4m19s)
+        ✔ All JavaScript is linked from external files @started(22-06-29 14:01) @done(22-07-01 02:05) @lasted(1d12h4m22s)
+        ☐ All markup for the student list and pagination buttons is created dynamically with JavaScript @started(22-06-29 14:01)
+
+    Exceed Expectations:
+        ☐ Uses JavaScript to append HTML for a search bar @started(22-06-29 14:01)
+        ☐ Search bar matches layout in the mockup file or has custom styling @started(22-06-29 14:01)
+
+Pagination Buttons
+    Meets Expectations:
+        ✔ Pagination buttons display the correct page @started(22-06-29 14:01) @done(22-07-01 02:05) @lasted(1d12h4m35s)
+        ✔ Clicking between or outside of pagination buttons does not trigger the click event @started(22-06-29 14:01) @done(22-07-01 02:05) @lasted(1d12h4m51s)
+        ✔ The `active` class is added to the first pagination button when the application loads @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m9s)
+        ✔ the `active` class named is added to the most recently clicked pagination buttons, and is never present on more than one button at any give time @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m20s)
+        ✔ Project has the correct number of pagination buttons and they are numbered correctly. For example, if there are 42 students there should be 5 pagination buttons, numbering from 1 through 5 @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m23s)
+
+    Exceeds Expectations:
+        ☐ The number of pages and pagination buttons change based on how many search results are returned. For example, if 9 or fewer results are returned, 0 or 1 pagination buttons are displayed. If 22 search results are returned, 3 pagination buttons are displayed. @started(22-06-29 14:01)
+
+Pagin
+    Meets Expectations:
+        ✔ The first 9 students from the array of objects in the `js/data.js` file are displayed when the page first loads @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m31s)
+        ✔ Clicking on a pagination button displays the correct number of students. For example, clicking on the "1" button should show students 1 to 9, clicking on the "2" button should show 10 to 18, etc @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m36s)
+    
+    Exceeds Expectations:
+        ☐ When a search yields 0 results, a "No Results" message is displayed on the page, and is removed or hidden when students are displayed on the page again @started(22-06-29 14:01)
+        ☐ After a search, pages only display students that match the search criteria and pages display the correct number of students. For example, if 22 search results are returned, the third and final page should only display four students @started(22-06-29 14:01)
+
+Code Quality
+    Meets Expectations:
+        ✔ Any new comments have been added to the `js/script.js` @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m40s)
+        ✔ No uncaught errors appear in the Chrome DevTools console while using the Pagination app in Chrome @started(22-06-29 14:01) @done(22-07-01 02:07) @lasted(1d12h6m49s)
+    
