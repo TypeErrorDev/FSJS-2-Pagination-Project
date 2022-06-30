@@ -4,49 +4,90 @@ FSJS Project 2 - Data Pagination and Filtering
 */
 
 // TO ACCESS THE JSON, THE VARIABLE IS `data`
+/////////////////////////////////////////////////////////////////
+//////////// CREATE AND APPEND ELEMENT TO PAGE //////////////////
+/////////////////////////////////////////////////////////////////
+const numOfStudentsPerPage = 9;
 
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
+/**
+ * This function will display the data within the page
+ * @param {string} list - This will declare what's being connected to
+ * @param {string} page - This will declare how many pages you'd like to have
+ */
 function showPage(list, page) {
-  // create two variables which will represent the index for the first and last student on the page
-  let numOfStudentsPerPage = 9;
-  let startIndex = page * numOfStudentsPerPage - numOfStudentsPerPage;
-  let endIndex = page * numOfStudentsPerPage;
-  // select the element with a class of `student-list` and assign it to a variable
-  let studentList = document.querySelector(".student-list");
-  // set the innerHTML property of the variable you just created to an empty string
-  studentList.innerHTML += "";
-  // loop over the length of the `list` parameter
+  const startIndex = page * numOfStudentsPerPage - numOfStudentsPerPage;
+  const endIndex = page * numOfStudentsPerPage;
+  const studentList = document.querySelector(".student-list");
 
-  for (i = 0; i < list.length; i++) {
-    // inside the loop create a conditional to display the proper students
-    // inside the conditional:
-    // create the elements needed to display the student information
-    // insert the above elements
+  studentList.innerHTML += "";
+
+  for (let i = 0; i < list.length; i++) {
+    if (i >= startIndex && i < endIndex) {
+      let listHTML = `
+        <li class="student-item cf">
+          <div class="student-details">
+            <img class="avatar" src="${list[i].picture.medium}" alt="Profile Picture">
+            <h3>${list[i].name.first} ${list[i].name.last}</h3>
+            <span class="email">${list[i].email}</span>
+          </div>
+          <div class="joined-details">
+            <span class="date">${list[i].registered.date}</span>
+          </div>
+        </li>`;
+      studentList.insertAdjacentHTML("beforeend", listHTML);
+    }
   }
 }
 
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
+/////////////////////////////////////////////////////////////////
+//////////// CREATE THE PAGINATION AT THE BOT ///////////////////
+/////////////////////////////////////////////////////////////////
+/**
+ * This function will create and insert/append the elements needed for the pagination buttons
+ * @param {string} list - This will declare what's being connected to
+ */
 function addPagination(list) {
-  // create a variable to calculate the number of pages needed
-  // select the element with a class of `link-list` and assign it to a variable
-  // set the innerHTML property of the variable you just created to an empty string
-  // loop over the number of pages needed
-  // create the elements needed to display the pagination button
-  // insert the above elements
-  // give the first pagination button a class of "active"
-  // create an event listener on the `link-list` element
-  // if the click target is a button:
-  // remove the "active" class from the previous button
-  // add the active class to the clicked button
-  // call the showPage function passing the `list` parameter and page to display as arguments
+  //   // create a variable to calculate the number of pages needed
+  const currentPages = Math.ceil(list.length / numOfStudentsPerPage);
+  //   // select the element with a class of `link-list` and assign it to a variable
+  let linkList = document.querySelector(".link-list");
+  //   // set the innerHTML property of the variable you just created to an empty string
+  linkList.innerHTML = "";
+  //   // loop over the number of pages needed
+  for (let i = 1; i <= currentPages; i++) {
+    //     // create the elements needed to display the pagination button
+    let pageButton = `
+       <li>
+          <button type="button">${i}</button>
+        </li>
+       `;
+    //     // insert the above elements
+    linkList.insertAdjacentHTML("beforeend", pageButton);
+    //     // give the first pagination button a class of "active"
+    const firstPageBtn = document.querySelector("button");
+    firstPageBtn.className = "active";
+  }
+  linkList.addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+      //       // remove the "active" class from the previous button add the active class to the clicked button
+      let prevBtn = document.querySelector(".active");
+      prevBtn.className = "";
+      e.target.className = "active";
+      //       // call the showPage function passing the `list` parameter and page to display as arguments
+      removePreviousPage();
+      showPage(list, e.target.textContent);
+    }
+  });
+}
+
+/////////////////////////////////////////////////////////////////
+////////////////// REMOVE PREVIOUS 9 USERS //////////////////////
+/////////////////////////////////////////////////////////////////
+function removePreviousPage() {
+  let studentList = document.querySelector(".student-list");
+  studentList.innerHTML = "";
 }
 
 // Call functions
-// showpage(data,1);
-// addPagination(data);
+showPage(data, 1);
+addPagination(data);
