@@ -93,7 +93,7 @@ showPage(data, 3);
 addPagination(data);
 
 /////////////////////////////////////////////////////////////////
-/////////////////// DISPLAY SEARCH RESULTS //////////////////////
+///////////////////// DISPLAY SEARCH BAR ////////////////////////
 /////////////////////////////////////////////////////////////////
 function searchBar() {
   const searchHeader = document.querySelector("header");
@@ -101,7 +101,7 @@ function searchBar() {
   searchLabel.className = "student-search";
   searchLabel.innerHTML = `
             <span>Search by name</span>
-            <input id="search" placeholder="Search by name..." />
+            <input id="search" placeholder="Search by name..." onkeyup="handleFilter()" />
             <button type="button">
               <img src="img/icn-search.svg" alt="Search icon" />
             </button>
@@ -109,3 +109,27 @@ function searchBar() {
   searchHeader.appendChild(searchLabel);
 }
 searchBar();
+
+/////////////////////////////////////////////////////////////////
+/////////////////// DISPLAY SEARCH RESULTS //////////////////////
+/////////////////////////////////////////////////////////////////
+let users = document.querySelector(".student-item");
+function handleFilter(e) {
+  const filterValue = e.target.value.toLowerCase();
+  console.log(filterValue);
+  input = document.getElementById("search");
+
+  // ${list[i].name.first} ${list[i].name.last}
+  // take filterValue and search users for matching letters in name
+  for (i = 0; i < users.length; i++) {
+    a = users[i].getElementsByTagName("h3")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filterValue) > -1) {
+      users[i].className.remove = "hidden";
+    } else {
+      users[i].className.add = "hidden";
+    }
+  }
+}
+const searchElement = document.querySelector("#search");
+searchElement.addEventListener("input", handleFilter);

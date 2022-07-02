@@ -2,11 +2,11 @@ External Vanilla Javascript
     Meets Expectations: 
         ✔ Project doesn't use jQuery or some other library, plugin or borrowed code snippet @started(22-06-29 14:01) @done(22-07-01 02:05) @lasted(1d12h4m19s)
         ✔ All JavaScript is linked from external files @started(22-06-29 14:01) @done(22-07-01 02:05) @lasted(1d12h4m22s)
-        ☐ All markup for the student list and pagination buttons is created dynamically with JavaScript @started(22-06-29 14:01)
+        ✔ All markup for the student list and pagination buttons is created dynamically with JavaScript @started(22-06-29 14:01) @done(22-07-02 02:39) @lasted(2d12h38m53s)
 
     Exceed Expectations:
-        ☐ Uses JavaScript to append HTML for a search bar @started(22-06-29 14:01)
-        ☐ Search bar matches layout in the mockup file or has custom styling @started(22-06-29 14:01)
+        ✔ Uses JavaScript to append HTML for a search bar @started(22-06-29 14:01) @done(22-07-02 02:40) @lasted(2d12h39m)
+        ✔ Search bar matches layout in the mockup file or has custom styling @started(22-06-29 14:01) @done(22-07-02 02:40) @lasted(2d12h39m3s)
 
 Pagination Buttons
     Meets Expectations:
