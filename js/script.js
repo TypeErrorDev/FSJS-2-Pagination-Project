@@ -89,7 +89,7 @@ function removePreviousPage() {
 }
 
 // Call functions
-showPage(data, 3);
+showPage(data, 1);
 addPagination(data);
 
 /////////////////////////////////////////////////////////////////
@@ -101,7 +101,7 @@ function searchBar() {
   searchLabel.className = "student-search";
   searchLabel.innerHTML = `
             <span>Search by name</span>
-            <input id="search" placeholder="Search by name..." onkeyup="handleFilter()" />
+            <input id="search" placeholder="Search by name..."  />
             <button type="button">
               <img src="img/icn-search.svg" alt="Search icon" />
             </button>
@@ -115,21 +115,22 @@ searchBar();
 /////////////////////////////////////////////////////////////////
 let users = document.querySelector(".student-item");
 function handleFilter(e) {
-  const filterValue = e.target.value.toLowerCase();
-  console.log(filterValue);
   input = document.getElementById("search");
 
-  // ${list[i].name.first} ${list[i].name.last}
-  // take filterValue and search users for matching letters in name
-  for (i = 0; i < users.length; i++) {
-    a = users[i].getElementsByTagName("h3")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filterValue) > -1) {
-      users[i].className.remove = "hidden";
-    } else {
-      users[i].className.add = "hidden";
-    }
-  }
+  //  1. Take/store search input
+  const filterValue = e.target.value.toLowerCase();
+  console.log(filterValue);
+  //  2. Loop through every student
+  let filterStudents = [];
+  for (let i = 0; i < data.length; i++) {}
+
+  // let result = data.filter((da) => data.name.startsWith(filterValue));
+  // console.log(result);
+  //startsWith
+  // filter()
+  //    a. See if individual student's data includes stored search input
+  //    b. If individual student's data includes stored search input, add that student to new list of students
+  //  3. After loop ends, call showPage function with new list of students as first argument
 }
 const searchElement = document.querySelector("#search");
 searchElement.addEventListener("input", handleFilter);
