@@ -2,7 +2,6 @@
 //////////// CREATE AND APPEND ELEMENT TO PAGE //////////////////
 /////////////////////////////////////////////////////////////////
 const numOfStudentsPerPage = 9;
-// let filteredPosts = [];
 
 /**
  * This function will display the data within the page
