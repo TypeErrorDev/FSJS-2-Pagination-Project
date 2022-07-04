@@ -16,8 +16,7 @@ function showPage(list, page) {
 
   studentList.innerHTML = "";
   if (list.length === 0) {
-    studentList.innerHTML =
-      "<h1>No results were found. Please check your spelling and try again!</h1>";
+    studentList.innerHTML = `<h1 class="noResults" style="font-size:40px; color: #ff6347">No results were found. <br>Please check your spelling and try again.</h1>`;
   } else {
     for (let i = 0; i < list.length; i++) {
       if (i >= startIndex && i < endIndex) {
