@@ -105,12 +105,6 @@ searchBar();
 /////////////////// DISPLAY SEARCH RESULTS //////////////////////
 /////////////////////////////////////////////////////////////////
 
-// Pseudocode - I'm thinking I need the following but i'm really not sure and I'm starting to get confused:
-// 1. grab the input field and store it in a variable of searchInput
-// 2. store the e.target.value.toLowerCase() into a variable searchValue
-// 3. Loop through data.js and compare the searchValue to ${data.name.first.toLowerCase()} ${data.name.last.toLowerCase()} and filter out the matching objects into a new array newStudentList[]
-// 4. take the total indexs of newStudentList[] and adjust the pagination buttons to reflect the correct amount of pages based on the results
-
 const input = document.querySelector("#search");
 const searchButton = document.querySelector("button");
 
@@ -121,31 +115,14 @@ function filterPosts() {
       .toLowerCase()
       .indexOf(input.value.toLowerCase()) !== -1;
   filterPosts = data.filter(searchFilter);
-
   showPage(filterPosts, 1);
+  addPagination(filterPosts);
 }
 
 input.addEventListener("keyup", filterPosts);
-// Call functions
+
+/////////////////////////////////////////////////////////////////
+/////////////////// CALL RENDERING FUNCTIONS ////////////////////
+/////////////////////////////////////////////////////////////////
 showPage(data, 1);
 addPagination(data);
-
-//Throw away snippets below
-
-// // this is the function that I'm working on to try and get it to filter the results
-// let users = document.querySelector(".student-item");
-// function handleFilter(searchedValue) {
-//   const results = data.filter((item) => {
-//     const name = `${item.name.first.toLowerCase()} ${item.name.last.toLowerCase()}`;
-//     return name.includes(searchedValue);
-//   });
-//   showPage(results, 1);
-//   addPagination(results);
-// }
-
-// // this grabs the search input
-// input.addEventListener("keyup", (e) => {
-//   const searchTerm = e.target.value.toLowerCase();
-//   handleFilter(searchTerm);
-//   console.log(searchTerm);
-// });
