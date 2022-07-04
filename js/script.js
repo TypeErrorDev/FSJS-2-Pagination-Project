@@ -15,10 +15,13 @@ function showPage(list, page) {
   const studentList = document.querySelector(".student-list");
 
   studentList.innerHTML = "";
-
-  for (let i = 0; i < list.length; i++) {
-    if (i >= startIndex && i < endIndex) {
-      let listHTML = `
+  if (list.length === 0) {
+    studentList.innerHTML =
+      "<h1>No results were found. Please check your spelling and try again!</h1>";
+  } else {
+    for (let i = 0; i < list.length; i++) {
+      if (i >= startIndex && i < endIndex) {
+        let listHTML = `
         <li class="student-item cf">
           <div class="student-details">
             <img class="avatar" src="${list[i].picture.medium}" alt="Profile Picture">
@@ -29,7 +32,8 @@ function showPage(list, page) {
             <span class="date">${list[i].registered.date}</span>
           </div>
         </li>`;
-      studentList.insertAdjacentHTML("beforeend", listHTML);
+        studentList.insertAdjacentHTML("beforeend", listHTML);
+      }
     }
   }
 }
@@ -42,33 +46,24 @@ function showPage(list, page) {
  * @param {string} list - This will be calling the Data.js file to grab the objects
  */
 function addPagination(list) {
-  // create a variable to calculate the number of pages needed
   const currentPages = Math.ceil(list.length / numOfStudentsPerPage);
-  // select the element with a class of `link-list` and assign it to a variable
   let linkList = document.querySelector(".link-list");
-  // set the innerHTML property of the variable you just created to an empty string
   linkList.innerHTML = "";
-  // loop over the number of pages needed
   for (let i = 1; i <= currentPages; i++) {
-    // create the elements needed to display the pagination button
     let pageButton = `
        <li>
           <button type="button">${i}</button>
         </li>
        `;
-    //      insert the above elements
     linkList.insertAdjacentHTML("beforeend", pageButton);
-    //      give the first pagination button a class of "active"
     const firstPageBtn = document.querySelector("button");
     firstPageBtn.className = "active";
   }
   linkList.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
-      //       // remove the "active" class from the previous button add the active class to the clicked button
       let prevBtn = document.querySelector(".active");
       prevBtn.className = "";
       e.target.className = "active";
-      //       // call the showPage function passing the `list` parameter and page to display as arguments
       removePreviousPage();
       showPage(list, e.target.textContent);
     }
@@ -76,7 +71,7 @@ function addPagination(list) {
 }
 
 /////////////////////////////////////////////////////////////////
-////////////////// REMOVE PREVIOUS 9 USERS //////////////////////
+/////////////////// REMOVE INITIAL 9 USERS //////////////////////
 /////////////////////////////////////////////////////////////////
 function removePreviousPage() {
   let studentList = document.querySelector(".student-list");
@@ -120,6 +115,10 @@ function filterPosts() {
 }
 
 input.addEventListener("keyup", filterPosts);
+searchButton.addEventListener("click", () => {
+  showPage(filterPosts, 1);
+  addPagination(filterPosts);
+});
 
 /////////////////////////////////////////////////////////////////
 /////////////////// CALL RENDERING FUNCTIONS ////////////////////
