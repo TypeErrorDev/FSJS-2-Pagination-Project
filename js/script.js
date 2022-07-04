@@ -2,7 +2,7 @@
 //////////// CREATE AND APPEND ELEMENT TO PAGE //////////////////
 /////////////////////////////////////////////////////////////////
 const numOfStudentsPerPage = 9;
-let filteredPosts = [];
+// let filteredPosts = [];
 
 /**
  * This function will display the data within the page
@@ -14,19 +14,19 @@ function showPage(list, page) {
   const endIndex = page * numOfStudentsPerPage;
   const studentList = document.querySelector(".student-list");
 
-  studentList.innerHTML += "";
+  studentList.innerHTML = "";
 
   for (let i = 0; i < list.length; i++) {
     if (i >= startIndex && i < endIndex) {
       let listHTML = `
         <li class="student-item cf">
           <div class="student-details">
-            <img class="avatar" src="${list[i].picture.medium}" alt="Profile Picture">
-            <h3>${list[i].name.first} ${list[i].name.last}</h3>
-            <span class="email">${list[i].email}</span>
+            <img class="avatar" src="${data[i].picture.medium}" alt="Profile Picture">
+            <h3>${data[i].name.first} ${data[i].name.last}</h3>
+            <span class="email">${data[i].email}</span>
           </div>
           <div class="joined-details">
-            <span class="date">${list[i].registered.date}</span>
+            <span class="date">${data[i].registered.date}</span>
           </div>
         </li>`;
       studentList.insertAdjacentHTML("beforeend", listHTML);
@@ -110,6 +110,7 @@ searchBar();
 // 2. store the e.target.value.toLowerCase() into a variable searchValue
 // 3. Loop through data.js and compare the searchValue to ${data.name.first.toLowerCase()} ${data.name.last.toLowerCase()} and filter out the matching objects into a new array newStudentList[]
 // 4. take the total indexs of newStudentList[] and adjust the pagination buttons to reflect the correct amount of pages based on the results
+
 // call showPage(newStudentList, 1)
 // call addPagination(newStudentList)
 
@@ -123,11 +124,10 @@ function filterPosts() {
       .toLowerCase()
       .indexOf(search.value.toLowerCase()) !== -1;
   filterPosts = data.filter(searchFilter);
-  showPage(data, 1);
+  showPage(searchFilter, 1);
 }
 
 input.addEventListener("keyup", filterPosts);
-
 // Call functions
 showPage(data, 1);
 addPagination(data);
